@@ -64,3 +64,5 @@ For implementing the delete book feature, we need to consider 2 scenarios:
 ####TDD approach:
 
 - Add test for scenario 1, when book does not exist. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults01.html).
+- Add test for scenario 2, when book exists. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults02.html).
+

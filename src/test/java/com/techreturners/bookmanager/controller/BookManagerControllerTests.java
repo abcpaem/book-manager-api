@@ -122,4 +122,17 @@ public class BookManagerControllerTests {
                 MockMvcRequestBuilders.delete("/api/v1/book/" + bookId))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+
+    @Test
+    public void testDeleteMappingDeleteBookByIdWhenBookExists() throws Exception {
+        Long bookId = 4L;
+
+        // Void methods on mocks do nothing by default, this call is here just to confirm that :P
+        doNothing().when(mockBookManagerServiceImpl).deleteBookById(bookId);
+
+        this.mockMvcController.perform(
+                MockMvcRequestBuilders.delete("/api/v1/book/" + bookId))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(bookId+""));
+    }
 }
