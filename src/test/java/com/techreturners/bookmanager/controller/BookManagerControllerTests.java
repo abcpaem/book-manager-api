@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -109,4 +110,16 @@ public class BookManagerControllerTests {
         verify(mockBookManagerServiceImpl, times(1)).updateBookById(book.getId(), book);
     }
 
+    @Test
+    public void testDeleteMappingDeleteBookByIdWhenBookDoesNotExist() throws Exception {
+        Long bookId = 4L;
+
+        doThrow(EmptyResultDataAccessException.class)
+                .when(mockBookManagerServiceImpl)
+                .deleteBookById(bookId);
+
+        this.mockMvcController.perform(
+                MockMvcRequestBuilders.delete("/api/v1/book/" + bookId))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
 }

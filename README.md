@@ -54,3 +54,13 @@ to add in exception handling to the project?
 - Clue 2: What if someone wants to find a book by an ID that doesn't yet exist? 
   How can we improve the API by handling errors gracefully and show a helpful message to the client?
   
+### Solution for Delete Book by ID
+
+For implementing the delete book feature, we need to consider 2 scenarios:
+
+1) When the book does not exist.
+2) When the book exists and it is deleted.
+
+####TDD approach:
+
+- Add test for scenario 1, when book does not exist. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults01.html).
