@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/v1/book")
@@ -27,7 +28,13 @@ public class BookManagerController {
 
     @GetMapping({"/{bookId}"})
     public ResponseEntity<Book> getBookById(@PathVariable Long bookId) {
-        return new ResponseEntity<>(bookManagerService.getBookById(bookId), HttpStatus.OK);
+        Book book;
+        try {
+            book = bookManagerService.getBookById(bookId);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
     @PostMapping

@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.mockito.Mockito.*;
 
@@ -77,6 +78,19 @@ public class BookManagerControllerTests {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(4))
             .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Book Four"));
+    }
+
+    @Test
+    public void testGetMappingGetBookByIdWhenBookDoesNotExistForThatID() throws Exception {
+        Long bookId = 4L;
+
+        doThrow(NoSuchElementException.class)
+                .when(mockBookManagerServiceImpl)
+                .getBookById(bookId);
+
+        this.mockMvcController.perform(
+                MockMvcRequestBuilders.get("/api/v1/book/" + bookId))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test

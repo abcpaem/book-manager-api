@@ -80,5 +80,5 @@ HTTP Status codes will be returned accordingly, 509 for Conflict and 404 for Not
 #### TDD approach:
 
 - Add test for scenario 1, when trying to add a book with an ID that already exists. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults03.html).
-
+- Add test for scenario 2, when user is trying to retrieve a book with an ID that doesn't exist. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults04.html).
 
