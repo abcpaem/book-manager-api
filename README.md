@@ -61,8 +61,24 @@ For implementing the delete book feature, we need to consider 2 scenarios:
 1) When the book does not exist.
 2) When the book exists and it is deleted.
 
-####TDD approach:
+#### TDD approach:
 
 - Add test for scenario 1, when book does not exist. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults01.html).
 - Add test for scenario 2, when book exists. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults02.html).
+
+### Extension Task Solution
+
+There are 2 scenarios for the extension task:
+
+1) Return error when trying to add a new book with an ID that already exists.
+2) Return error when user is trying to retrieve a book with an ID that doesn't exist.
+
+#### Considerations
+
+HTTP Status codes will be returned accordingly, 509 for Conflict and 404 for Not found, so I'm not considering that the user of the API is a human with no HTTP knowledge, but a person or system that understands the meaning of HTTP Status codes.
+
+#### TDD approach:
+
+- Add test for scenario 1, when trying to add a book with an ID that already exists. See test [here](https://htmlview.glitch.me/?https://github.com/abcpaem/book-manager-api/blob/main/docs/TestResults03.html).
+
 

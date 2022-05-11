@@ -23,6 +23,8 @@ public class BookManagerServiceImpl implements BookManagerService {
 
     @Override
     public Book insertBook(Book book) {
+        if (book.getId() != null && bookManagerRepository.existsById(book.getId()))
+            throw new IllegalArgumentException();
         return bookManagerRepository.save(book);
     }
 
